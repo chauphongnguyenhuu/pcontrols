@@ -1,5 +1,12 @@
 <RCC>
     <qresource prefix="/">
-        <file>main.qml</file>
+        <file>qml/main.qml</file>
+        <file>qml/SequentialImageAnimation.qml</file>
+        <file>image/animation_000.png</file>
+        <file>image/animation_001.png</file>
+        <file>image/animation_002.png</file>
+        <file>image/animation_003.png</file>
+        <file>image/animation_004.png</file>
+        <file>image/animation_005.png</file>
     </qresource>
 </RCC>
