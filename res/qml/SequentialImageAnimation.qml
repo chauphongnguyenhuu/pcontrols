@@ -8,8 +8,9 @@ Item {
     property int startFrame: 0
     property int endFrame: 0
     property int frameRate: 0
-    property int frameCount: endFrame - startFrame + 1
-    property int currentFrame: startFrame
+
+    readonly property alias frameCount: _.frameCount
+    readonly property alias currentFrame: _.currentFrame
 
     property alias easing: anim.easing
     property alias loops: anim.loops
@@ -61,22 +62,31 @@ Item {
     height: 200
 
     Repeater {
-        model: frameCount
+        model: _.frameCount
 
         Image {
             anchors.fill: root
             source: formatString(sourceFormat, model.index + startFrame)
-            visible: currentFrame === model.index + startFrame
+            visible: _.currentFrame === model.index + startFrame
         }
     }
 
     // jerked when endFrame -> startFrame
-    NumberAnimation on currentFrame {
+    NumberAnimation {
         id: anim
+        target: _
+        property: "currentFrame"
         from: startFrame
         to: endFrame
-        duration: frameCount * 1000.0 / frameRate
+        duration: _.frameCount * 1000.0 / frameRate
+        running: true
         onStarted: root.started()
         onStopped: root.stopped()
+    }
+
+    QtObject {
+        id: _
+        property int frameCount: endFrame - startFrame + 1
+        property int currentFrame: startFrame
     }
 }

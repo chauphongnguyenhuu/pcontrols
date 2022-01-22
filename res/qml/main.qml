@@ -22,7 +22,6 @@ Window {
         sourceFormat: "qrc:/image/animation_{3}.png"
         loops: Animation.Infinite
         running: false
-        alwaysRunToEnd: true
     }
 
     Row {
